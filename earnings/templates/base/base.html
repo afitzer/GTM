@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <title>Don't Die Before Living. Travel.</title>
+        {% block header %}{% endblock %}
+    </head>
+
+    <body>
+        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+            <div id="navbarMain" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        My Calendar
+                    </a>
+                    <a class="navbar-item" href="/">
+                        Upcoming Trips
+                    </a>
+                    <a class="navbar-item" href="/">
+                        Potential Trips
+                    </a>
+                    <a class="navbar-item" href="/">
+                        Events
+                    </a>
+                    <a class="navbar-item" href="/">
+                        Friends
+                    </a>
+                    <a class="navbar-item" href="/">
+                        Past Trips
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if session.logged_in %}
+                        <a class="button is-primary" href="/logout">
+                            <strong>Log out</strong>
+                        </a>
+                        {% else %}
+                        <a class="button is-primary" href="/login">
+                            <strong>Log in</strong>
+                        </a>
+                        <a class="button is-light" href="/register">
+                            Register
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section class="hero is-small is-info is-bold">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="title">Trip Planner</h1>
+                    <h2 class="subtitle">Colab with your friends, share cool events, plan the trips that you will remember for a lifetime.</h2>
+                </div>
+            </div>
+        </section>
+        {% block content %}{% endblock %}
+    </body>
+    <footer>
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <h1 class="title">Travel</h1>
+                </div>
+                <div class="column">
+                    <h1 class="title">Contact</h1>
+                    <p>Spice Central</p>
+                    <p>1904 N Burling Street, Apt 1</p>
+                    <p>Chicago, IL 60614</p>
+                    <p>123-456-7890</p>
+                </div>
+                <div class="column">
+                    <h1 class="title">Social Media</h1>
+                    <p>Facebook</p>
+                    <p>Twitter</p>
+                    <p>Instagram</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</html>

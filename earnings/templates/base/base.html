@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-        <title>Don't Die Before Living. Travel.</title>
+        <title>Travel.</title>
         {% block header %}{% endblock %}
     </head>
 
@@ -13,23 +13,17 @@
         <nav class="navbar is-black" role="navigation" aria-label="main navigation">
             <div id="navbarMain" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="/">
-                        My Calendar
+                    <a class="navbar-item" href="{% url 'earnings:index' %}">
+                        Home
                     </a>
-                    <a class="navbar-item" href="/">
-                        Upcoming Trips
+                    <a class="navbar-item" href="{% url 'earnings:flights' %}">
+                        Flights
                     </a>
-                    <a class="navbar-item" href="/">
-                        Potential Trips
+                    <a class="navbar-item" href="{% url 'earnings:hotels' %}">
+                        Hotels
                     </a>
-                    <a class="navbar-item" href="/">
+                    <a class="navbar-item" href="{% url 'earnings:events' %}">
                         Events
-                    </a>
-                    <a class="navbar-item" href="/">
-                        Friends
-                    </a>
-                    <a class="navbar-item" href="/">
-                        Past Trips
                     </a>
                 </div>
             </div>
@@ -41,9 +35,6 @@
                         </a>
                         <a class="button is-light">
                             Log in
-                        </a>
-                        <a class="button is-light">
-                            Cart
                         </a>
                     </div>
                 </div>

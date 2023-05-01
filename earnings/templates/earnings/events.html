@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section class="section">
+    <a href="{% url 'earnings:event_create' %}" class="button is-primary">Create New Event</a>
+</section>
+<section class="section">
+    <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Cost</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in object_list %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.city }}</td>
+                    <td>{{ event.state }}</td>
+                    <td>{{ event.start_date }}</td>
+                    <td>{{ event.end_date }}</td>
+                    <td>{{ event.cost }}</td>
+                    <td>{{ event.website }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock content %}

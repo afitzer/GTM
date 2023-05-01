@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section class="section">
+    <a href="{% url 'earnings:hotel_create' %}" class="button is-primary">Create New Hotel Stay</a>
+</section>
+<section class="section">
+    <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Hotel</th>
+                    <th>Hotel Chain</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hotel in object_list %}
+                <tr>
+                    <td>{{ hotel.name }}</td>
+                    <td>{{ hotel.hotel_chain }}</td>
+                    <td>{{ hotel.city }}</td>
+                    <td>{{ hotel.state }}</td>
+                    <td>{{ hotel.start_date }}</td>
+                    <td>{{ hotel.end_date }}</td>
+                    <td>{{ hotel.cost }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock content %}

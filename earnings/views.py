@@ -7,12 +7,6 @@ class TripListView(ListView):
     model = Trip
     template_name = 'earnings/index.html'
 
-class TripCreateView(CreateView):
-    model = Trip
-    fields = ['name', 'start_date', 'end_date', 'flights', 'hotels', 'events', 'shared']
-    template_name = 'earnings/trip_form.html'
-    success_url = '/trips/'
-
 class TripDetailView(DetailView):
     model = Trip
     template_name = 'earnings/trip_detail.html'

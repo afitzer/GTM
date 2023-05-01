@@ -1,6 +1,6 @@
-from django.shortcuts import render
 from .models import Trip, Flight, Hotel, Event
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 
 class TripListView(ListView):
@@ -12,6 +12,17 @@ class TripCreateView(CreateView):
     fields = ['name', 'start_date', 'end_date', 'flights', 'hotels', 'events', 'shared']
     template_name = 'earnings/trip_form.html'
     success_url = '/trips/'
+
+class TripDetailView(DetailView):
+    model = Trip
+    template_name = 'earnings/trip_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['flights'] = Flight.objects.filter(trip=self.object)
+        context['hotels'] = Hotel.objects.filter(trip=self.object)
+        context['events'] = Event.objects.filter(trip=self.object)
+        return context
 
 class FlightListView(ListView):
     model = Flight

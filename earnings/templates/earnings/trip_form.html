@@ -2,9 +2,61 @@
 
 {% block content %}
 <section class="section">
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <h2 class="title">Add Event</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label class="label">Event Name</label>
+                        <div class="control">
+                            <input class="input" type="text" name="name" value="{{ form.name.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Start Date</label>
+                        <div class="control">
+                            <input class="input" type="date" name="start_date" value="{{ form.start_date.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">End Date</label>
+                        <div class="control">
+                            <input class="input" type="date" name="end_date" value="{{ form.end_date.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Flights</label>
+                        <div class="control">
+                            <input class="input" type="text" name="flights" value="{{ form.flights.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Hotels</label>
+                        <div class="control">
+                            <input class="input" type="text" name="hotels" value="{{ form.hotels.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Events</label>
+                        <div class="control">
+                            <input class="input" type="text" name="events" value="{{ form.events.value }}">
+                        </div>
+                    <div class="field">
+                        <label class="label">Shared</label>
+                        <div class="control">
+                            <input class="input" type="text" name="shared" value="{{ form.shared.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock content %}

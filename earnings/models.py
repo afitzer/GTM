@@ -33,7 +33,7 @@ class Flight(models.Model):
     shared = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["-start_date"]
+        ordering = ["start_date"]
 
     def __str__(self):
         return self.name

@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <h2 class="title">Add a New Trip</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label class="label">Trip Name</label>
+                        <div class="control">
+                            <input class="input" type="text" name="name" value="{{ form.name.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Start Date</label>
+                        <div class="control">
+                            <input class="input" type="date" name="start_date" value="{{ form.start_date.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">End Date</label>
+                        <div class="control">
+                            <input class="input" type="date" name="end_date" value="{{ form.end_date.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Flights</label>
+                        <div class="control">
+                            <select class="input" name="flights">
+                                <option value="" {% if not form.flights.value %}selected{% endif %}>--None--</option>
+                                {% for flight in flights %}
+                                <option value="{{ flights.id }}" {% if form.flights.value in flight.id %}selected{% endif %}>{{ flight.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Hotels</label>
+                        <div class="control">
+                            <select class="input" name="hotels">
+                                <option value="" {% if not form.hotels.value %}selected{% endif %}>--None--</option>
+                                {% for hotel in hotels %}
+                                <option value="{{ hotels.id }}" {% if form.hotels.value in hotel.id %}selected{% endif %}>{{ hotel.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Events</label>
+                        <div class="control">
+                            <select class="input" name="events">
+                                <option value="" {% if not form.events.value %}selected{% endif %}>--None--</option>
+                                {% for event in events %}
+                                <option value="{{ events.id }}" {% if form.events.value in event.id %}selected{% endif %}>{{ event.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Shared</label>
+                        <div class="control">
+                            <input class="input" type="checkbox" name="shared" {% if form.shared.value %}checked{% endif %}>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

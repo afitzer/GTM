@@ -17,6 +17,12 @@ class TripDetailView(DetailView):
         context['hotels'] = Hotel.objects.filter(trip=self.object)
         context['events'] = Event.objects.filter(trip=self.object)
         return context
+    
+class TripCreateView(CreateView):
+    model = Trip
+    fields = ['name', 'start_date', 'end_date', 'flights', 'hotels', 'events', 'shared']
+    success_url = '/'
+    template_name = 'earnings/trip_form.html'
 
 class FlightListView(ListView):
     model = Flight

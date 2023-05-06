@@ -9,6 +9,9 @@ class Trip(models.Model):
     events = models.ManyToManyField("Event")
     shared = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ["start_date"]
+
     def __str__(self):
         return self.name
     

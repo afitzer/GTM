@@ -1,11 +1,13 @@
 from django.db import models
 
+from django.db import models
+
 class Trip(models.Model):
     name = models.CharField(max_length=200)
     start_date = models.DateField()
     end_date = models.DateField()
-    flights = models.ManyToManyField("Flight")
-    hotels = models.ManyToManyField("Hotel")
+    flights = models.ManyToManyField("Flight", blank=True, null=True)
+    hotels = models.ManyToManyField("Hotel", blank=True, null=True)
     events = models.ManyToManyField("Event")
     shared = models.BooleanField(default=False)
 

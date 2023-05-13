@@ -2,6 +2,7 @@ from .models import Trip, Flight, Hotel, Event
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.shortcuts import render
 
 class TripListView(ListView):
     model = Trip
@@ -53,3 +54,7 @@ class EventCreateView(CreateView):
     fields = ['name', 'description', 'city', 'state', 'start_date', 'end_date', 'cost', 'website', 'shared']
     template_name = 'earnings/event_form.html'
     success_url = '/events/'
+
+# display gapminder html
+def gapminder(request):
+    return render(request, 'earnings/gapminder_2007.html')

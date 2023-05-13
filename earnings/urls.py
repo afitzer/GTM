@@ -1,5 +1,5 @@
 from django.urls import path
-from earnings.views import TripListView, TripCreateView, FlightListView, EventListView, HotelListView, FlightCreateView, HotelCreateView, EventCreateView, TripDetailView
+from earnings.views import TripListView, TripCreateView, FlightListView, EventListView, HotelListView, FlightCreateView, HotelCreateView, EventCreateView, TripDetailView, gapminder
 
 app_name = "earnings"
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('hotels/create/', HotelCreateView.as_view(), name='hotel_create'),
     path('events/create/', EventCreateView.as_view(), name='event_create'),
     path('trips/<int:pk>/', TripDetailView.as_view(), name='trip_detail'),
+    path('gapminder/', gapminder, name='gapminder'),
 ]

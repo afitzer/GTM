@@ -10,7 +10,15 @@
     </head>
 
     <body>
-        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+        <section class="hero is-small is-warning is-bold">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h3 class="title">Trip Planner</h3>
+                    <!-- <h2 class="subtitle">Colab with your friends, share cool events, plan the trips that you will remember for a lifetime.</h2> -->
+                </div>
+            </div>
+        </section>
+        <nav class="navbar is-dark is-expanded is-centered" role="navigation" aria-label="main navigation">
             <div id="navbarMain" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" href="{% url 'earnings:index' %}">
@@ -27,7 +35,7 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
+            <!-- <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-primary">
@@ -38,16 +46,8 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </nav>
-        <section class="hero is-small is-info is-bold">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="title">Trip Planner</h1>
-                    <h2 class="subtitle">Colab with your friends, share cool events, plan the trips that you will remember for a lifetime.</h2>
-                </div>
-            </div>
-        </section>
         {% block content %}{% endblock %}
     </body>
     <!-- <footer>

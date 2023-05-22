@@ -61,7 +61,7 @@ class Hotel(models.Model):
     
 class Event(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.CharField(max_length=200)
     city = models.CharField(max_length=60)
     state = models.CharField(max_length=30)
     start_date = models.DateField()

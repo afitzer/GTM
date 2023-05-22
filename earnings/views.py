@@ -70,3 +70,6 @@ class EventDeleteView(DeleteView):
 # display gapminder html
 def gapminder(request):
     return render(request, 'earnings/gapminder_2007.html')
+
+def flight_chart(request):
+    return render(request, 'earnings/flight_chart.html')

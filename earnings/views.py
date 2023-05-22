@@ -1,8 +1,9 @@
 from .models import Trip, Flight, Hotel, Event
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 class TripListView(ListView):
     model = Trip
@@ -22,7 +23,7 @@ class TripDetailView(DetailView):
 class TripCreateView(CreateView):
     model = Trip
     fields = ['name', 'start_date', 'end_date', 'flights', 'hotels', 'events', 'shared']
-    success_url = '/'
+    success_url = reverse_lazy('earnings:index')
     template_name = 'earnings/trip_form.html'
 
 class FlightListView(ListView):
@@ -33,7 +34,7 @@ class FlightCreateView(CreateView):
     model = Flight
     fields = ['name', 'origin', 'destination', 'start_date', 'end_date', 'cost', 'airline', 'shared']
     template_name = 'earnings/flight_form.html'
-    success_url = '/flights/'
+    success_url = reverse_lazy('earnings:flights')
 
 class HotelListView(ListView):
     model = Hotel
@@ -43,7 +44,7 @@ class HotelCreateView(CreateView):
     model = Hotel
     fields = ['name', 'hotel_chain', 'city', 'state', 'start_date', 'end_date', 'cost', 'shared']
     template_name = 'earnings/hotel_form.html'
-    success_url = '/hotels/'
+    success_url = reverse_lazy('earnings:hotels')
 
 class EventListView(ListView):
     model = Event
@@ -53,7 +54,18 @@ class EventCreateView(CreateView):
     model = Event
     fields = ['name', 'description', 'city', 'state', 'start_date', 'end_date', 'cost', 'website', 'shared']
     template_name = 'earnings/event_form.html'
-    success_url = '/events/'
+    success_url = reverse_lazy('earnings:events')
+
+class EventUpdateView(UpdateView):
+    model = Event
+    fields = ['name', 'description', 'city', 'state', 'start_date', 'end_date', 'cost', 'website', 'shared']
+    template_name = 'earnings/event_form.html'
+    success_url = reverse_lazy('earnings:events')
+
+class EventDeleteView(DeleteView):
+    model = Event
+    template_name = 'earnings/event_delete.html'
+    success_url = reverse_lazy('earnings:events')
 
 # display gapminder html
 def gapminder(request):

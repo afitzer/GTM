@@ -17,6 +17,7 @@
                     <th>Description</th>
                     <th>Cost</th>
                     <th>Website</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,10 @@
                     <td>{{ event.description }}</td>
                     <td>{{ event.cost }}</td>
                     <td>{{ event.website }}</td>
+                    <td>
+                        <a href="{% url 'earnings:event_update' event.pk %}" class="button is-primary is-small">Edit</a>
+                        <a href="{% url 'earnings:event_delete' event.pk %}" class="button is-danger is-small">Delete</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

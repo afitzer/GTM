@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 from django.urls import reverse_lazy
+import subprocess
 
 class TripListView(ListView):
     model = Trip
@@ -30,11 +31,20 @@ class FlightListView(ListView):
     model = Flight
     template_name = 'earnings/flights.html'
 
+def execute_notebook():
+    notebook_path = r"C:\Users\alexp\Documents\GTM\notebooks\Charts.ipynb"
+    subprocess.run(["jupyter", "nbconvert", "--to", "notebook", "--execute", notebook_path])
+
 class FlightCreateView(CreateView):
     model = Flight
     fields = ['name', 'origin', 'destination', 'start_date', 'end_date', 'cost', 'airline', 'shared']
     template_name = 'earnings/flight_form.html'
     success_url = reverse_lazy('earnings:flights')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        execute_notebook()  # Execute the notebook after form submission
+        return response
 
 class HotelListView(ListView):
     model = Hotel

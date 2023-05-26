@@ -6,6 +6,10 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 import subprocess
 
+def execute_notebook():
+    notebook_path = r"C:\Users\alexp\Documents\GTM\notebooks\Charts.ipynb"
+    subprocess.run(["jupyter", "nbconvert", "--to", "notebook", "--execute", notebook_path])
+
 class TripListView(ListView):
     model = Trip
     template_name = 'earnings/index.html'
@@ -30,10 +34,6 @@ class TripCreateView(CreateView):
 class FlightListView(ListView):
     model = Flight
     template_name = 'earnings/flights.html'
-
-def execute_notebook():
-    notebook_path = r"C:\Users\alexp\Documents\GTM\notebooks\Charts.ipynb"
-    subprocess.run(["jupyter", "nbconvert", "--to", "notebook", "--execute", notebook_path])
 
 class FlightCreateView(CreateView):
     model = Flight

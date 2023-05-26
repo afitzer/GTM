@@ -56,6 +56,11 @@ class HotelCreateView(CreateView):
     template_name = 'earnings/hotel_form.html'
     success_url = reverse_lazy('earnings:hotels')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        execute_notebook()  # Execute the notebook after form submission
+        return response
+
 class EventListView(ListView):
     model = Event
     template_name = 'earnings/events.html'
@@ -66,20 +71,35 @@ class EventCreateView(CreateView):
     template_name = 'earnings/event_form.html'
     success_url = reverse_lazy('earnings:events')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        execute_notebook()  # Execute the notebook after form submission
+        return response
+
 class EventUpdateView(UpdateView):
     model = Event
     fields = ['name', 'description', 'city', 'state', 'start_date', 'end_date', 'cost', 'website', 'shared']
     template_name = 'earnings/event_form.html'
     success_url = reverse_lazy('earnings:events')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        execute_notebook()  # Execute the notebook after form submission
+        return response
+
 class EventDeleteView(DeleteView):
     model = Event
     template_name = 'earnings/event_delete.html'
     success_url = reverse_lazy('earnings:events')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        execute_notebook()  # Execute the notebook after form submission
+        return response
+
 # display gapminder html
 def gapminder(request):
     return render(request, 'earnings/gapminder_2007.html')
 
-def flight_chart(request):
-    return render(request, 'earnings/flight_chart.html')
+def chart(request):
+    return render(request, 'earnings/chart.html')

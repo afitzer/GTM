@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 import subprocess
+from django.utils import timezone
 
 def execute_notebook():
     notebook_path = r"C:\Users\alexp\Documents\GTM\notebooks\Charts.ipynb"
@@ -13,6 +14,13 @@ def execute_notebook():
 class TripListView(ListView):
     model = Trip
     template_name = 'earnings/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = timezone.now().date()
+        context['upcoming_trips'] = self.get_queryset().filter(start_date__gte=today)
+        context['past_trips'] = self.get_queryset().filter(start_date__lt=today)
+        return context
 
 class TripDetailView(DetailView):
     model = Trip

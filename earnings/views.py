@@ -5,11 +5,20 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 import subprocess
+import sys
+import os
 from django.utils import timezone
 
-def execute_notebook():
-    notebook_path = r"C:\Users\alexp\Documents\GTM\notebooks\Charts.ipynb"
-    subprocess.run(["jupyter", "nbconvert", "--to", "notebook", "--execute", notebook_path])
+def execute_chart_update():
+    chart_update_path = r"C:\Users\alexp\Documents\GTM\notebooks\chart_update.py"
+
+    # Activate the virtual environment
+    venv_path = r"C:\Users\alexp\Documents\GTM\.venv\Scripts\activate"
+    activate_cmd = f"source {venv_path}" if sys.platform.startswith("linux") else f"activate {venv_path}"
+    subprocess.run(activate_cmd, shell=True, check=True)
+
+    # Execute the chart_update.py script using the python command
+    subprocess.run([sys.executable, chart_update_path])
 
 class TripListView(ListView):
     model = Trip
@@ -58,7 +67,7 @@ class FlightCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        execute_notebook()  # Execute the notebook after form submission
+        execute_chart_update()
         return response
 
 class HotelListView(ListView):
@@ -80,7 +89,7 @@ class HotelCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        execute_notebook()  # Execute the notebook after form submission
+        execute_chart_update()
         return response
 
 class EventListView(ListView):
@@ -102,7 +111,7 @@ class EventCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        execute_notebook()  # Execute the notebook after form submission
+        execute_chart_update()
         return response
 
 class EventUpdateView(UpdateView):
@@ -113,7 +122,7 @@ class EventUpdateView(UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        execute_notebook()  # Execute the notebook after form submission
+        execute_chart_update()
         return response
 
 class EventDeleteView(DeleteView):
@@ -123,7 +132,7 @@ class EventDeleteView(DeleteView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        execute_notebook()  # Execute the notebook after form submission
+        execute_chart_update()
         return response
 
 # display gapminder html

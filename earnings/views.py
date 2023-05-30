@@ -132,3 +132,6 @@ def gapminder(request):
 
 def chart(request):
     return render(request, 'earnings/chart.html')
+
+def highchart(request):
+    return render(request, 'earnings/highchart.html')

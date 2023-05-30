@@ -17,4 +17,5 @@ urlpatterns = [
     path('events/<int:pk>/delete/', EventDeleteView.as_view(), name='event_delete'),
     path('gapminder/', gapminder, name='gapminder'),
     path('chart/', chart, name='chart'),
+    path('highchart/', chart, name='highchart')
 ]

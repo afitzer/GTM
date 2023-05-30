@@ -1,10 +1,12 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+
 <section class="section">
     <a href="{% url 'earnings:hotel_create' %}" class="button is-primary">Create New Hotel Stay</a>
-</section>
-<section class="section">
+    <br>
+    <br>
+    <h3 class="sub_title">Upcoming Hotel Stays</h3>
     <div class="table-container">
         <table class="table is-bordered is-hoverable is-fullwidth">
             <thead>
@@ -19,7 +21,36 @@
                 </tr>
             </thead>
             <tbody>
-                {% for hotel in object_list %}
+                {% for hotel in upcoming_hotels %}
+                <tr>
+                    <td>{{ hotel.name }}</td>
+                    <td>{{ hotel.hotel_chain }}</td>
+                    <td>{{ hotel.city }}</td>
+                    <td>{{ hotel.state }}</td>
+                    <td>{{ hotel.start_date }}</td>
+                    <td>{{ hotel.end_date }}</td>
+                    <td>{{ hotel.cost }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <h3 class="sub_title">Past Hotel Stays</h3>
+    <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style="background-color: #5892b1;">Hotel</th>
+                    <th style="background-color: #5892b1;">Hotel Chain</th>
+                    <th style="background-color: #5892b1;">City</th>
+                    <th style="background-color: #5892b1;">State</th>
+                    <th style="background-color: #5892b1;">Check-In</th>
+                    <th style="background-color: #5892b1;">Check-Out</th>
+                    <th style="background-color: #5892b1;">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hotel in past_hotels %}
                 <tr>
                     <td>{{ hotel.name }}</td>
                     <td>{{ hotel.hotel_chain }}</td>

@@ -43,6 +43,13 @@ class FlightListView(ListView):
     model = Flight
     template_name = 'earnings/flights.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = timezone.now().date()
+        context['upcoming_flights'] = self.get_queryset().filter(start_date__gte=today)
+        context['past_flights'] = self.get_queryset().filter(start_date__lt=today)
+        return context
+
 class FlightCreateView(CreateView):
     model = Flight
     fields = ['name', 'origin', 'destination', 'start_date', 'end_date', 'cost', 'airline', 'shared']
@@ -58,6 +65,13 @@ class HotelListView(ListView):
     model = Hotel
     template_name = 'earnings/hotels.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = timezone.now().date()
+        context['upcoming_hotels'] = self.get_queryset().filter(start_date__gte=today)
+        context['past_hotels'] = self.get_queryset().filter(start_date__lt=today)
+        return context
+
 class HotelCreateView(CreateView):
     model = Hotel
     fields = ['name', 'hotel_chain', 'city', 'state', 'start_date', 'end_date', 'cost', 'shared']
@@ -72,6 +86,13 @@ class HotelCreateView(CreateView):
 class EventListView(ListView):
     model = Event
     template_name = 'earnings/events.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = timezone.now().date()
+        context['upcoming_events'] = self.get_queryset().filter(start_date__gte=today)
+        context['past_events'] = self.get_queryset().filter(start_date__lt=today)
+        return context
 
 class EventCreateView(CreateView):
     model = Event

@@ -9,9 +9,16 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="field">
-                        <label class="label">Workout Name</label>
+                        <label class="label">Exercise</label>
                         <div class="control">
-                            <input class="input" type="text" name="name" value="{{ form.name.value }}">
+                            <div class="select">
+                                <select name="exercise">
+                                    <option value="">---------</option>
+                                    {% for exercise in exercises %}
+                                    <option value="{{ exercise.pk }}">{{ exercise.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="field">

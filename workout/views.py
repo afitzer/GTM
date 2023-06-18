@@ -14,3 +14,9 @@ class WorkoutListView(ListView):
 
     def get_queryset(self):
         return Workout.objects.all()
+    
+class WorkoutCreateView(CreateView):
+    model = Workout
+    fields = ['name', 'date', 'sets', 'reps', 'weight']
+    success_url = reverse_lazy('workout:index')
+    template_name = 'workout/workout_create.html'

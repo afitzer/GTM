@@ -1,0 +1,50 @@
+{% extends 'workout/base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <h2 class="title">Add a New Workout</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label class="label">Workout Name</label>
+                        <div class="control">
+                            <input class="input" type="text" name="name" value="{{ form.name.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Date</label>
+                        <div class="control">
+                            <input class="input" type="date" name="date" value="{{ form.date.value }}">
+                    </div>
+                    <div class="field">
+                        <label class="label">Sets</label>
+                        <div class="control">
+                            <input class="input" type="text" name="sets" value="{{ form.sets.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Reps</label>
+                        <div class="control">
+                            <input class="input" type="text" name="reps" value="{{ form.reps.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Weight</label>
+                        <div class="control">
+                            <input class="input" type="text" name="weight" value="{{ form.weight.value }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,14 +1,10 @@
 from .models import Workout, Exercise
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from itertools import groupby
 from operator import attrgetter
-import django_filters
-
-# Create your views here.
+from django.db.models import Q
 
 class WorkoutListView(ListView):
     model = Workout
@@ -35,3 +31,16 @@ class ExerciseListView(ListView):
     model = Exercise
     template_name = 'workout/exercises.html'
     context_object_name = 'exercises'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')  # Get the value of the 'q' parameter from the URL
+        exercises = super().get_queryset()
+        
+        if query:
+            # Filter the exercises based on the 'name' field using a case-insensitive search
+            # exercises = exercises.filter(Q(name__icontains=query))
+
+            # Filter the exercises based on the 'category' field using a case-insensitive search
+            exercises = exercises.filter(Q(category__name__icontains=query))
+
+        return exercises

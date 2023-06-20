@@ -5,6 +5,13 @@
 <section class="section">
     <div class="column">
         <h2 class="title">Exercises</h2>
+        <!-- Add a search input field -->
+        <form method="GET" action="{% url 'workout:exercises' %}">
+            <input type="text" name="q" placeholder="Search exercises by Category" value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+        <br>
+        <br>
         <div class="table-container">
             <table class="table is-bordered is-hoverable is-fullwidth">
                 <thead class="header-cell">

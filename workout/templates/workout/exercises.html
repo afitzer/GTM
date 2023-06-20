@@ -1,35 +1,27 @@
 {% extends 'workout/base.html' %}
 
 {% block content %}
-{% for date, workouts in workouts_by_date.items %}
+<!-- Display a table of exercises -->
 <section class="section">
     <div class="column">
-        <h2 class="title">{{ date }}</h2>
+        <h2 class="title">Exercises</h2>
         <div class="table-container">
             <table class="table is-bordered is-hoverable is-fullwidth">
                 <thead class="header-cell">
                     <tr>
                         <th style="background-color: #5892b1;">Category</th>
                         <th style="background-color: #5892b1;">Exercise</th>
-                        <th style="background-color: #5892b1;">Sets</th>
-                        <th style="background-color: #5892b1;">Reps</th>
-                        <th style="background-color: #5892b1;">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for workout in workouts %}
+                    {% for exercise in exercises %}
                     <tr>
-                        <td>{{ workout.exercise.category }}</td>
-                        <td>{{ workout.exercise }}</td>
-                        <td>{{ workout.sets }}</td>
-                        <td>{{ workout.reps }}</td>
-                        <td>{{ workout.weight }}</td>
+                        <td>{{ exercise.category }}</td>
+                        <td>{{ exercise.name }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-</section>
-{% endfor %}
 {% endblock content %}

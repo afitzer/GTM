@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from itertools import groupby
 from operator import attrgetter
+import django_filters
 
 # Create your views here.
 
@@ -29,3 +30,8 @@ class WorkoutCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['exercises'] = Exercise.objects.all()
         return context
+
+class ExerciseListView(ListView):
+    model = Exercise
+    template_name = 'workout/exercises.html'
+    context_object_name = 'exercises'

@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from itertools import groupby
 from operator import attrgetter
 from django.db.models import Q
+from django.shortcuts import render
 
 class WorkoutListView(ListView):
     model = Workout
@@ -44,3 +45,6 @@ class ExerciseListView(ListView):
             exercises = exercises.filter(Q(category__name__icontains=query))
 
         return exercises
+
+def Journal(request):
+    return render(request, 'workout/journal.html')

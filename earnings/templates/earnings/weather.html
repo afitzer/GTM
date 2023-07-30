@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<section>
+    <h1>Weather Information</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div id="weatherInfo">
+        <!-- Weather data will be displayed here -->
+    </div>
+
+    <script>
+        function getWeather() {
+            var cityName = document.getElementById('cityInput').value;
+            var url = `/weather/get-weather/?city=${cityName}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the weather data and update the weatherInfo div
+                    var weatherInfoDiv = document.getElementById('weatherInfo');
+                    weatherInfoDiv.innerHTML = `Temperature: ${data.main.temp}°C<br>
+                                                Description: ${data.weather[0].description}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+    </script>
+</section>
+
+{% endblock content %}

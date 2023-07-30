@@ -8,6 +8,9 @@ import subprocess
 import sys
 import os
 from django.utils import timezone
+import requests
+from django.conf import settings
+from django.http import JsonResponse
 
 def execute_chart_update():
     chart_update_path = r"C:\Users\alexp\Documents\GTM\notebooks\chart_update.py"
@@ -141,3 +144,17 @@ def gapminder(request):
 
 def chart(request):
     return render(request, 'earnings/chart.html')
+
+def get_weather(request):
+    api_key = settings.WEATHER_API_KEY
+    api_url = settings.WEATHER_API_URL
+    city_name = request.GET.get('city', 'London')  # Default city is London
+
+    params = {'q': city_name, 'appid': api_key, 'units': 'metric'}
+    response = requests.get(api_url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        return JsonResponse(data)
+    else:
+        return JsonResponse({'error': 'Unable to fetch weather data.'}, status=500)

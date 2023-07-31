@@ -13,7 +13,7 @@ class WorkoutListView(ListView):
     context_object_name = 'workouts_by_date'
 
     def get_queryset(self):
-        workouts = Workout.objects.all()
+        workouts = Workout.objects.order_by('-date')
         workouts_by_date = {date: list(workouts) for date, workouts in groupby(workouts, key=attrgetter('date'))}
         return workouts_by_date
     

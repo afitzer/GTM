@@ -11,7 +11,7 @@ class Workout(models.Model):
         ordering = ["date"]
 
     def __str__(self):
-        return self.exercise.name
+        return str(self.date) + " - " + self.exercise.name
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

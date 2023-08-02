@@ -128,3 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # WEATHER API KEY & URL
 WEATHER_API_KEY = 'fdb11f73ad925ef3e2c040237de3d827'
 WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
+
+LOGIN_REDIRECT_URL = 'workout:index'
+
+LOGOUT_REDIRECT_URL = 'dwitter:login'

@@ -6,16 +6,33 @@ from itertools import groupby
 from operator import attrgetter
 from django.db.models import Q
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 class WorkoutListView(ListView):
     model = Workout
     template_name = 'workout/index.html'
     context_object_name = 'workouts_by_date'
+    paginate_by = 30
 
     def get_queryset(self):
-        workouts = Workout.objects.order_by('-date')
+        return Workout.objects.order_by('-date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        workouts = context['object_list']
         workouts_by_date = {date: list(workouts) for date, workouts in groupby(workouts, key=attrgetter('date'))}
-        return workouts_by_date
+
+        # Apply pagination to the grouped data
+        paginator = Paginator(list(workouts_by_date.items()), self.paginate_by)  # Convert to list before pagination
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['workouts_by_date'] = dict(page_obj)  # Convert back to dictionary format for the template
+        return context
+
+    # def get_queryset(self):
+    #     workouts = Workout.objects.order_by('-date')
+    #     workouts_by_date = {date: list(workouts) for date, workouts in groupby(workouts, key=attrgetter('date'))}
+    #     return workouts_by_date
     
 class WorkoutCreateView(CreateView):
     model = Workout

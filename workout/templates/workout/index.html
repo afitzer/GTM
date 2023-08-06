@@ -11,9 +11,9 @@
                     <tr>
                         <th style="background-color: #5892b1;">Category</th>
                         <th style="background-color: #5892b1;">Exercise</th>
-                        <th style="background-color: #5892b1;">Sets</th>
-                        <th style="background-color: #5892b1;">Reps/Miles/Attempts</th>
-                        <th style="background-color: #5892b1;">Weight</th>
+                        <th style="background-color: #5892b1;" class="has-text-centered">Sets/Attempts</th>
+                        <th style="background-color: #5892b1;" class="has-text-centered">Reps/Miles</th>
+                        <th style="background-color: #5892b1;" class="has-text-centered">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,9 +21,9 @@
                     <tr>
                         <td>{{ workout.exercise.category }}</td>
                         <td>{{ workout.exercise }}</td>
-                        <td>{{ workout.sets }}</td>
-                        <td>{{ workout.reps }}</td>
-                        <td>{{ workout.weight }}</td>
+                        <td class="has-text-centered">{{ workout.sets }}</td>
+                        <td class="has-text-centered">{{ workout.reps }}</td>
+                        <td class="has-text-centered">{{ workout.weight }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

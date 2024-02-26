@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'earnings.apps.EarningsConfig',
     'workout.apps.WorkoutConfig',
+    'whiskey.apps.WhiskeyConfig',
     'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <title>Whiskey.</title>
+        {% block header %}{% endblock %}
+    </head>
+
+    <body>
+        <!-- Add a background color below -->
+        <section class="hero is-small is-bold" style="background-color: rgb(0, 0, 0);">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h3 class="title" style="color: white;">WhiskeyEx</h3>
+            </div>
+        </section>
+        <nav class="navbar is-dark is-expanded is-centered" role="navigation" aria-label="main navigation">
+            <div id="navbarMain" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="#">
+                        Home
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Add Whiskey
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Whiskey List
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Join</strong>
+                        </a>
+                        <a class="button is-light">
+                            Sign-In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock %}
+    </body>
+</html>

@@ -55,11 +55,11 @@ class ExerciseListView(ListView):
         exercises = super().get_queryset()
         
         if query:
-            # Filter the exercises based on the 'name' field using a case-insensitive search
-            # exercises = exercises.filter(Q(name__icontains=query))
-
             # Filter the exercises based on the 'category' field using a case-insensitive search
             exercises = exercises.filter(Q(category__name__icontains=query))
+
+        # Sort the exercises in ascending order by category name
+        exercises = exercises.order_by('category__name')
 
         return exercises
 

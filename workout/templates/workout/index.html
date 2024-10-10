@@ -1,19 +1,30 @@
 {% extends 'workout/base.html' %}
 
 {% block content %}
+<style>
+    /* Reducing space between tables */
+    .section {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+
 {% for date, workouts in workouts_by_date.items %}
 <section class="section">
     <div class="column">
-        <h2 class="title">{{ date }}</h2>
+        <h2 class="title has-text-primary" style="font-weight: bold;">{{ date }}</h2>
         <div class="table-container">
-            <table class="table is-bordered is-hoverable is-fullwidth">
-                <thead class="header-cell">
+            <table class="table is-bordered is-hoverable is-fullwidth has-text-centered">
+                <thead>
                     <tr>
-                        <th style="background-color: #5892b1;">Category</th>
-                        <th style="background-color: #5892b1;">Exercise</th>
-                        <th style="background-color: #5892b1;" class="has-text-centered">Sets/Attempts</th>
-                        <th style="background-color: #5892b1;" class="has-text-centered">Reps/Miles/Minutes</th>
-                        <th style="background-color: #5892b1;" class="has-text-centered">Weight</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Category</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Exercise</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Sets/Attempts
+                        </th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">
+                            Reps/Miles/Minutes</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,9 +32,9 @@
                     <tr>
                         <td>{{ workout.exercise.category }}</td>
                         <td>{{ workout.exercise }}</td>
-                        <td class="has-text-centered">{{ workout.sets }}</td>
-                        <td class="has-text-centered">{{ workout.reps }}</td>
-                        <td class="has-text-centered">{{ workout.weight }}</td>
+                        <td>{{ workout.sets }}</td>
+                        <td>{{ workout.reps }}</td>
+                        <td>{{ workout.weight }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -33,20 +44,20 @@
 </section>
 {% endfor %}
 <section>
-    <div class="pagination">
+    <div class="pagination is-centered">
         <span class="step-links">
             {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            <a class="pagination-link" href="?page=1">&laquo; First</a>
+            <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
             {% endif %}
-    
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+
+            <span class="pagination-link is-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
             </span>
-    
+
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
             {% endif %}
         </span>
     </div>

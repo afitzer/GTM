@@ -8,11 +8,36 @@
         padding-bottom: 1rem;
         margin-bottom: 0.5rem;
     }
+
+    /* Adding border and padding around date */
+    .date-title {
+        border: 2px solid #ff6f61;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #fef3f3;
+    }
+
+    /* Adding border around each workout row */
+    .workout-row {
+        border: 1px solid #e0e0e0;
+        padding: 0.5rem;
+    }
+
+    /* Styling for the description text box */
+    /* .description-box {
+        width: 100%;
+        min-height: 50px;
+        padding: 0.1rem;
+        border: 1px solid #ff9478;
+        border-radius: 1px;
+        background-color: #fff3f3;
+        color: #333;
+    } */
 </style>
 
 {% for date, workouts in workouts_by_date.items %}
 <section class="section">
-    <div class="column">
+    <div class="column date-title">
         <h2 class="title has-text-primary" style="font-weight: bold;">{{ date }}</h2>
         <div class="table-container">
             <table class="table is-bordered is-hoverable is-fullwidth has-text-centered">
@@ -20,11 +45,10 @@
                     <tr>
                         <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Category</th>
                         <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Exercise</th>
-                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Sets/Attempts
-                        </th>
-                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">
-                            Reps/Miles/Minutes</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Sets/Attempts</th>
+                        <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Reps/Miles/Minutes</th>
                         <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Weight</th>
+                        <!-- <th style="background: linear-gradient(45deg, #ff9478, #ff6f61); color: #fff;">Description</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +59,9 @@
                         <td>{{ workout.sets }}</td>
                         <td>{{ workout.reps }}</td>
                         <td>{{ workout.weight }}</td>
+                        <!-- <td>
+                            <textarea class="description-box">Place Holder</textarea>
+                        </td> -->
                     </tr>
                     {% endfor %}
                 </tbody>

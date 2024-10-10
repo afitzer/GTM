@@ -86,7 +86,9 @@
     <!-- Add a vibrant background color below -->
     <section class="hero is-small is-bold">
         <div class="hero-body">
-            <div class="container has-text-centered">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                {% load static %}
+                <img src="{% static 'workout/logo.png' %}" alt="WorkoutEx Logo" style="max-height: 85px; margin-right: 10px;">
                 <h3 class="title">WorkoutEx</h3>
             </div>
         </div>

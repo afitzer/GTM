@@ -33,7 +33,7 @@ class WorkoutListView(ListView):
     #     workouts = Workout.objects.order_by('-date')
     #     workouts_by_date = {date: list(workouts) for date, workouts in groupby(workouts, key=attrgetter('date'))}
     #     return workouts_by_date
-    
+
 class WorkoutCreateView(CreateView):
     model = Workout
     fields = ['exercise', 'date', 'sets', 'reps', 'weight']
